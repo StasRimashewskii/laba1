@@ -71,6 +71,14 @@ public class Complex {
         return this;
     }
 
+    public double getReal() {
+        return re;
+    }
+
+    public double getImaginary() {
+        return im;
+    }
+
     /**
      * Multiply operation.
      * @param  b multiplier
