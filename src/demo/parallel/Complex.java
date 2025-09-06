@@ -93,4 +93,10 @@ public class Complex {
     public double lengthSQ() {
         return re * re + im * im;
     }
+
+    public Complex cubePlus(Complex b) {
+        Complex temp = new Complex(re, im);
+        temp.times(this).times(this); // z^3
+        return temp.plus(b);
+    }
 }
