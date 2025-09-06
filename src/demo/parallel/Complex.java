@@ -99,4 +99,26 @@ public class Complex {
         temp.times(this).times(this); // z^3
         return temp.plus(b);
     }
+
+    /**
+     * Divide operation.
+     * @param b divisor
+     * @return this Complex object whose value is this / b
+     */
+    public Complex divide(Complex b) {
+        double denominator = b.re * b.re + b.im * b.im;
+        double real = (re * b.re + im * b.im) / denominator;
+        double imag = (im * b.re - re * b.im) / denominator;
+        re = real;
+        im = imag;
+        return this;
+    }
+
+    /**
+     * Modulus operation (modulus of the complex number).
+     * @return a new Complex object whose value is |this|
+     */
+    public double modulus() {
+        return Math.sqrt(re * re + im * im);
+    }
 }

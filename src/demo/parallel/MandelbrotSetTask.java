@@ -264,8 +264,8 @@ class MandelbrotSetTask extends Task<Long> {
     /**
      * Calculates number of iterations a complex quadratic polynomials
      * stays within a disk of some finite radius for a given complex number.
-     * 
-     * This number is used to choose a color for this pixel for precalculated 
+     *
+     * This number is used to choose a color for this pixel for precalculated
      * color tables.
      *
      * @param comp a complex number used for calculation
@@ -273,11 +273,14 @@ class MandelbrotSetTask extends Task<Long> {
      */
     private int calc(Complex comp) {
         int count = 0;
-        Complex c = new Complex(0, 0);
+        Complex z = new Complex(0, 0);
         do {
-            c = c.cubePlus(comp); // z^3 + c
+            // Новое уравнение: z → (z^3 + c) / (|z| + 1)
+            Complex numerator = z.cubePlus(comp); // z^3 + c
+            double denominator = z.modulus() + 1; // |z| + 1
+            z = numerator.divide(new Complex(denominator, 0));
             count++;
-        } while (count < CAL_MAX_COUNT && c.lengthSQ() < LENGTH_BOUNDARY);
+        } while (count < CAL_MAX_COUNT && z.lengthSQ() < LENGTH_BOUNDARY);
         return count;
     }
 
